@@ -38,7 +38,7 @@
 
 如果你还没完全理解上方提到的各个要素之间的关系，可以通过下方的**奥德赛世界生态关系表述图**进行理解
 
-![OdysseyWorld_ecological _relationship](assets/img/relationship.png)
+![relationship](assets/img/relationship.png)
 
 值得注意的是该框架模型**本身不为Minecraft设计**，只是**把Minecraft暂时作为`游戏表现域`进行虚拟感观世界组织模型的实验**，随着科技发展会逐步打造成一个真正元宇宙中的虚拟感观世界。`游戏运作引擎`与Minecraft在**本质上完全无关**，意在打造一个**适用于任何`游戏开发引擎`的运作框架**，只需把核心的`游戏运算域`与为对应游戏开发引擎定制的`游戏表现域`联结即可形成完整游戏作品。**在本项目中，我们将Minecraft视为一个游戏开发引擎**
 
