@@ -1,5 +1,6 @@
 #include <afx.h>
 #include <assert.h>
+#include <cstring>
 
 namespace WindowsRegistry{
     class Op{
@@ -9,6 +10,7 @@ namespace WindowsRegistry{
             op(HKEY hKey = HKEY_LOCAL_MACHINE){
                 cHKey = hKey
             };
+
             BOOL OpenKey(LPCTSTR lpSubKey);
             void close();
             BOOL CreateKey(LPCTSTR lpSubKey);
@@ -27,7 +29,16 @@ namespace WindowsRegistry{
             }
     };
 
-    BOOL Op::OpenKey(LPCTSTR lpSubKey) {
+    LPCTSTR BasicSubKey = "SOFTWARE//OdysseyWorld";
+    LPCTSTR lpSubKeyConsist(LPCTSTR lpSubKeyTail){
+        LPCTSTR subKey = BasicSubKey;
+        std::strcat(subKey,"//");
+        std::strcat(subKey,lpSubKeyTail);
+        return subKey;
+    }
+
+    BOOL Op::OpenKey(LPCTSTR lpSubKeyTail) {
+        lpSubKey = lpSubKeyConsist(lpSubKeyTail);
         assert(cHKey);
         assert(lpSubKey);
         HKEY hKey;
@@ -46,7 +57,8 @@ namespace WindowsRegistry{
         }
     }
 
-    BOOL Op::CreateKey(LPCTSTR lpSubKey){
+    BOOL Op::CreateKey(LPCTSTR lpSubKeyTail){
+        lpSubKey = lpSubKeyConsist(lpSubKeyTail);
         assert(cHKey);
         assert(lpSubKey);
         HKEY hKey;
@@ -189,5 +201,4 @@ namespace WindowsRegistry{
         }
         return false;
     }
-
 }
