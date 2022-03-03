@@ -11,7 +11,7 @@ namespace WindowsRegistry{
         private:
             HKEY cHKey;
         public:
-            Op(HKEY hKey = HKEY_LOCAL_MACHINE){
+            Op(HKEY hKey = HKEY_CURRENT_USER){//Get Administrator exchange:HKEY_LOCAL_MACHINE
                 cHKey = hKey;
             };
             BOOL SetHKEY(LPCTSTR strKey);
