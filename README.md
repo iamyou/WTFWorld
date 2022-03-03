@@ -19,7 +19,7 @@
 ## 对象关系
 
 `奥德赛世界`单位运行模式是世界承载容器<=>世界连接通道
-![对象关系](assets\img\objectship.svg)
+![对象关系](assets/img/objectship.svg)
 
 ## 特点
 
