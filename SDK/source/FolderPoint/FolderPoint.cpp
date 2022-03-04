@@ -1,13 +1,15 @@
 #define DLLEXPORT extern "C" __declspec(dllexport)
+
+/*
 #include <iostream>
 #include <string>
-#include <cstring>
+*/
+#include "../WindowsRegistry/WindowsRegistry.h"
 
 namespace FolderPoint{
     const int logicLayer = 3;
     const int logicLayerChar = logicLayer * 2;
-    char concretePath[1024];
-    char concreteTop_Main[] = "D:\\";
+    /*
     void concreteConsist(char top[],char tail[]=""){
         if (std::strcmp(tail,"") == 0){
             std::strcpy(concretePath,top);
@@ -17,8 +19,23 @@ namespace FolderPoint{
             std::strcat(concretePath,tail);
         }
     }
+    */
 }
 
+DLLEXPORT BOOL filePath(LPCTSTR logicPath,std::string *concretePath){
+    WindowsRegistry::Op registryRead;
+    if (registryRead.OpenKey("SOFTWARE\\OdysseyWorld\\FolderPoint") == false){
+        return false;
+    }else{
+        if (registryRead.Read(logicPath,concretePath) == false){
+            return false;
+        }else{
+            return true;
+        }
+    }
+}
+
+/*
 DLLEXPORT char* filePath(char *logicPath) {
     if (std::strlen(logicPath) > FolderPoint::logicLayerChar){
         std::cout << "error" << std::endl;
@@ -39,3 +56,4 @@ DLLEXPORT char* filePath(char *logicPath) {
     }
     return FolderPoint::concretePath;
 }
+ */
