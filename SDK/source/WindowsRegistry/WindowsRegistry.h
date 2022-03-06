@@ -1,8 +1,8 @@
 #include <windows.h>
 #include <assert.h>
-#include <string.h>
 #include <iostream>
 #include <Winreg.h>
+#include <string>
 #ifndef WindowsRegistry_H
 #define WindowsRegistry_H
 

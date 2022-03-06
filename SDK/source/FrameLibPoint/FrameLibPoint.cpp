@@ -5,16 +5,22 @@
 */
 #include "../WindowsRegistry/WindowsRegistry.h"
 
-DLLEXPORT BOOL dllPath(std::string dllName,std::string *dllPath){
+BOOL filePath(LPCTSTR logicPath,std::string *concretePath){
     WindowsRegistry::Op registryRead;
     if (registryRead.OpenKey("SOFTWARE\\OdysseyWorld\\FolderPoint") == false){
         return false;
     }else{
-        if (registryRead.Read("a1b1",dllPath) == false){
+        if (registryRead.Read(logicPath,concretePath) == false){
             return false;
         }else{
-            *dllPath = *dllPath + "\\" + dllName + ".dll";
             return true;
         }
     }
+}
+
+int main(){
+    char *dllPath_;
+    dllPath("FolderPoint",dllPath_);
+    std::cout << "3." << *dllPath_ << std::endl;
+    return 0;
 }
