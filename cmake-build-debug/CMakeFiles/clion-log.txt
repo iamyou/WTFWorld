@@ -1,0 +1,1 @@
+D:\JetBrains\apps\CLion\ch-0\213.6777.58\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=D:/JetBrains/apps/CLion/ch-0/213.6777.58/bin/ninja/win/ninja.exe -G Ninja D:\BaiduNetdiskWorkspace\项目开发\奥德赛世界\程序开发\OdysseyWorld
