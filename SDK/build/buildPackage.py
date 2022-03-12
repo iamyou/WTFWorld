@@ -1,7 +1,32 @@
 import json
 import os
 import openpyxl
-import threading
+import shutil
+
+programPool = {}
+
+class Program:
+    def __init__(self,name=None,extension=None,type=None,moduleRequired=None,tag=None,compiledInto=None,devClass=None):
+        self.Name = name
+        self.Extension = extension
+        self.Type = type
+        self.ModuleRequired = moduleRequired
+        self.Tag = tag
+        self.CompiledInto = compiledInto
+        self.Class = devClass
+    def Path(self):
+        return  self.Name + "." + self.Extension
+
+class File:
+    def __init__(self,filePath,fileName):
+        self.FilePath = filePath
+        self.FileName = fileName
+        if (os.path.exists(filePath) == False):
+            os.makedirs(filePath)
+    def Write(self,content):
+        file = open(self.FilePath + "\\" + self.FileName,"w")
+        file.write(content)
+        file.close()
 
 class Excel:
     def __init__(self,excelPath,excelSheet):
@@ -15,7 +40,7 @@ class Excel:
     def getCellValue(self,row,list):
         return self.ws(row,list).value
 
-def logoPrinter():
+def LogoPrinter():
     print("________       .___                                  __      __            .__       .___")
     print("\_____  \    __| _/__.__. ______ ______ ____ ___.__./  \    /  \___________|  |    __| _/")
     print(" /   |   \  / __ <   |  |/  ___//  ___// __ <   |  |\   \/\/   /  _ \_  __ \  |   / __ | ")
@@ -35,23 +60,17 @@ def ResetRowAndColumn():
     row = 1
     column = 1
 
-def PackageList_getConfigcolumn():
-    global column_program
-    global column_language
-    global column_type
-    global column_moduleRequired
-    global column_tag
-    global column_compiledInto
-    global column_class
-    global column_logicPath
+def PackageList_identity():
+    global programPool
     packageList = Excel("./packageList.xlsx","main")
     max_column = packageList.getCellMax("column")
+    max_row = packageList.getCellMax("row")
     ResetRowAndColumn()
     while(column<max_column+1):
         if(packageList.getCellValue(1,column) == "PROGRAM"):
             column_program = column
-        elif(packageList.getCellValue(1,column) == "LANGUAGE"):
-            column_language = column
+        elif(packageList.getCellValue(1,column) ==t_extension):
+            column_extension = column
         elif (packageList.getCellValue(1, column) == "TYPE"):
             column_type = column
         elif (packageList.getCellValue(1, column) == "MODULE REQUIRED"):
@@ -63,47 +82,54 @@ def PackageList_getConfigcolumn():
         elif (packageList.getCellValue(1, column) == "CLASS"):
             column_class = column
         elif (packageList.getCellValue(1, column) == "LOGIC PATH"):
-            column_logicPath =column
+            column_logicPath = column
         else:
             pass
         column +=1
-
-def PackageList_identifyLogicPath():#Depends on PackageList_getConfigcolumn()
-    list_program = []
-    list_language = []
-    list_type = []
-    list_moduleRequired = []
-    list_tag = []
-    list_compiledInto = []
-    list_class = []
-    list_logicPath = []
-    list_programPath = []
-    packageList = Excel("./packageList.xlsx", "main")
-    max_row = packageList.getCellMax("row")
     ResetRowAndColumn()
     row +=1
     while(row<max_row+1):
-        list_program.append(packageList.getCellValue(row,column_program))
-        list_language.append(packageList.getCellValue(row,column_language))
-        list_type.append(packageList.getCellValue(row,column_type))
-        list_moduleRequired.append(packageList.getCellValue(row,column_moduleRequired))
-        list_tag.append(packageList.getCellValue(row,column_tag))
-        list_compiledInto.append(packageList.getCellValue(row,column_compiledInto))
-        list_class.append(packageList.getCellValue(row,column_class))
-        list_logicPath.append(packageList.getCellValue(row,column_logicPath))
-        row +=1
-    row = 0
-    while(row < max_row):
-        list_programPath.append("..\\source\\" + list_class[row] + "\\" + list_program[row])
+        programName = packageList.getCellValue(row,column_program)
+        exec("{} = Program(\"{}\")".format(programName,packageList.getCellValue(row,column_program)))
+        exec("{}.Extension = \"{}\"".format(programName,packageList.getCellValue(row,column_extension)))
+        exec("{}.Type = \"{}\"".format(programName,packageList.getCellValue(row,column_type)))
+        exec("{}.ModuleRequired = \"{}\"".format(programName,packageList.getCellValue(row,column_moduleRequired)))
+        exec("{}.Tag = \"{}\"".format(programName,packageList.getCellValue(row,column_tag)))
+        exec("{}.CompiledInte = \"{}\"".format(programName,packageList.getCellValue(row,column_compiledInto)))
+        exec("{}.Class = \"{}\"".format(programName,packageList.getCellValue(row,column_class)))
+        exec("programPool[\"{}\"] = {}".format(programName.programName))
         row +=1
 
-def dllmake_auto():
-    list_dll_program = []
-    list_dll_programID = []
-    row = 0
-    for compiledInto in list_compiledInto:
-        if (compiledInto = "dll"):
-            list_dll_programID.append(row)
-        row += 1
-    for programID = list_dll_programID:
-        list_dll_program.append(list_programPath[programID])
+def Compiled_dll(program,sourcePath,compiledPath):
+    if (program.Extension == "c"):
+        debug = os.popen("gcc " + sourcePath + "\\" + program.Path() + " -shared -o " + compiledPath + "\\" + program.Name + ".dll")
+        if(os.path.exists(compiledPath + "\\" + program.Name + ".dll") == False):
+            debugLog = File(compiledPath,"error-compiled-dll-" + program.Name + ".log")
+            debugLog.Write(debug.read())
+            return False
+        else:
+            return True
+    elif (program.Extension == "cpp")
+        debug = os.popen("g++ " + sourcePath + "\\" + program.Path() + " -shared -o " + compiledPath + "\\" + program.Name + ".dll")
+        if (os.path.exists(compiledPath + "\\" + program.Name + ".dll") == False):
+            debugLog = File(compiledPath, "error-compiled-dll-" + program.Name + ".log")
+            debugLog.Write(debug.read())
+            return False
+        else:
+            return True
+    elif (program.Extension == "py")
+        shutil.copyfile(sourcePath + "\\" + program.Path(),compiledPath + "\\" + program.Name + "\\" + program.Name + ".py")
+        pydSetUp = File(compiledPath,program.Name + "\\setup.py")
+        pydSetUp.Write("from distutils.core import setup\nfrom Cython.Build import cythonize\nsetup(ext_modules=cythonize(" + program.Name + ".py\"))")
+        debug = os.popen("python " + compiledPath + "\\" + program.Name + "\\setup.py" + " build_ext --inplace")
+        if (os.path.exists(compiledPath + "\\" + program.Name + "\\" + program.Name + ".cp37-win_amd64" + ".pyd") == False):#TODO:".cp37-win_amd64" must be depended on developers' devices
+            debugLog = File(compiledPath, "error-compiled-pyd-" + program.Name + ".log")
+            debugLog.Write(debug.read())
+            os.remove(compiledPath + "\\" + program.Name)
+            return False
+        else:
+            shutil.copyfile(compiledPath + "\\" + program.Name + "\\" + program.Name + ".cp37-win_amd64" + ".pyd",compiledPath + "\\" + program.Name + ".pyd")
+            os.remove(compiledPath + "\\" + program.Name)
+            return True
+    else:
+        pass
