@@ -3,7 +3,7 @@
 
 ##### English | [简体中文](https://github.com/leoweyr/OdysseyWorld/wiki/%E8%87%AA%E8%BF%B0)
 
-**`OdysseyWorld` is an experiment to explore the organization model of the `Unreal sensory world` in the `Metaverse` based on the `Web3.0` thought design architecture.**
+**`OdysseyWorld` is an experiment to explore the organization model of the `Unreal Sensory World` in the `Metaverse` based on `Web3.0` ideological design framework.**
 
 ## 📕Join the development
 - You can at least `c++`, because the main `Frame` of this project is written by `c++`.
