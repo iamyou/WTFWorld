@@ -1,7 +1,7 @@
 # OdysseyWorld - UnrealWorld Container
 ![Label-Language_Channels_Support](https://img.shields.io/badge/Language%20Channels%20Support-English%20Chinese-red)
 
-##### English | [简体中文](https://github.com/leoweyr/OdysseyWorld/wiki/README(zh_CN))
+##### English | [简体中文](https://github.com/leoweyr/OdysseyWorld/wiki/%E8%87%AA%E8%BF%B0)
 
 **`OdysseyWorld` is an experiment to explore the organization model of the `Unreal sensory world` in the `Metaverse` based on the `Web3.0` thought design architecture.**
 
