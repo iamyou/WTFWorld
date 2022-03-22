@@ -1,4 +1,4 @@
-#WTFyWorld - UnrealWorld Container
+#WTFWorld - UnrealWorld Container
 ![Label-Language_Channels_Support](https://img.shields.io/badge/Language%20Channels%20Support-English%20Chinese-red)
 
 ##### English | [简体中文](https://github.com/iamyou/WTFWorld/wiki/%E8%87%AA%E8%BF%B0)
