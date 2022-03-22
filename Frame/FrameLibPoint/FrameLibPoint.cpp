@@ -4,6 +4,7 @@
 #include <string>
 */
 #include "../WindowsRegistry/WindowsRegistry.h"
+#include <Python.h>
 
 /*
 DLLEXPORT BOOL dllPath(std::string dllName,std::string *dllPath){
@@ -35,8 +36,28 @@ BOOL dllPath(std::string dllName,std::string *dllPath){
     }
 }
 
+DLLEXPORT PyObject* dllPath_Py(PyObject* self, PyObject* args)
+{
+    char* name = new char[1024];
+    char* path = new char[1024];
+    if (!PyArg_ParseTuple(args, "ss", name, path)) 
+    {
+        return NULL;
+    }
+    else {
+        std::string sName = name;
+        std::string sP = path;
+        std::string* sPath = &sP;
+        if (dllPath(sName, sPath)) 
+        {
+            return Py_True;
+        }
+        else {
+            return Py_False;
+        }
+    }
+}
+
 int main(){
-    char dllPath_;
-    dllPath("FolderPoint",()dllPath_);
     return 0;
 }
