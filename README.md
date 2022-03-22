@@ -5,7 +5,7 @@
 
 **`WTFWorld` is an experiment to explore the organization model of the `Unreal Sensory World` in the `Metaverse` based on `Web3.0` ideological design framework.**
 
-#`IGNORE THE POOR ENGLISH PLZ IT WASNT WIRRITEN BY ME`
+# **`IGNORE THE POOR ENGLISH PLZ IT WASNT WIRRITEN BY ME`**
 
 ## 📕Join the development
 - You can at least `c++`, because the main `Frame` of this project is written by `c++`.
