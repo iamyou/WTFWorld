@@ -22,7 +22,7 @@ namespace RegistrySet {
 
     BOOL Uninstall(){
         WindowsRegistry::Op registryUninstall;
-        return registryUninstall.DeleteKey("HKey_Current_User","SOFTWARE\\OdysseyWorld\\FolderPoint");
+        return registryUninstall.DeleteKey("HKey_Current_User","SOFTWARE\\WTFWorld\\FolderPoint");
     }
 }
 
