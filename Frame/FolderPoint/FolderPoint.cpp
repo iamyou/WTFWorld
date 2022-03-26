@@ -6,7 +6,7 @@
 */
 #include "../WindowsRegistry/WindowsRegistry.h"
 
-DLLEXPORT BOOL filePath(LPCTSTR logicPath,std::string *concretePath){
+DLLEXPORT BOOL FolderPoint(LPCTSTR logicPath,std::string *concretePath){
     WindowsRegistry::Op registryRead;
     if (registryRead.OpenKey("SOFTWARE\\OdysseyWorld\\FolderPoint") == false){
         return false;
@@ -18,25 +18,12 @@ DLLEXPORT BOOL filePath(LPCTSTR logicPath,std::string *concretePath){
         }
     }
 }
-
-/*
-DLLEXPORT char* filePath(char *logicPath) {
-    if (std::strlen(logicPath) > FolderPoint::logicLayerChar){
-        std::cout << "error" << std::endl;
+DLLEXPORT BOOL FolderPoint_register(char* headerPath,char* folderName,char* logicPathLevel,char* logicPath){
+    WindowsRegistry::Op registryRead;
+    if (registryRead.OpenKey("SOFTWARE\\OdysseyWorld\\FolderPoint") == false) {
+        return false;
     }else{
-        if (std::strcmp(logicPath,"a") == 0) {
-            FolderPoint::concreteConsist(FolderPoint::concreteTop_Main);
-        }
-        if (std::strcmp(logicPath,"a1") == 0) {
-            FolderPoint::concreteConsist(FolderPoint::concreteTop_Main,"character");
-        }
-        if (std::strcmp(logicPath,"a2") == 0) {
-            FolderPoint::concreteConsist(FolderPoint::concreteTop_Main,"environment");
-        }
-        if (std::strcmp(logicPath,"a3") == 0) {
-            FolderPoint::concreteConsist(FolderPoint::concreteTop_Main,"resource");
-        }
+        return true;
     }
-    return FolderPoint::concretePath;
 }
- */
+

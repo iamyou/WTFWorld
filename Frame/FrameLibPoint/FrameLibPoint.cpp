@@ -21,7 +21,7 @@ DLLEXPORT BOOL dllPath(std::string dllName,std::string *dllPath){
 }
 */
 
-BOOL dllPath(std::string dllName,std::string *dllPath){
+BOOL dllPath(char* dllName,char* dllPath){
     WindowsRegistry::Op registryRead;
     if (registryRead.OpenKey("SOFTWARE\\OdysseyWorld\\FolderPoint") == false){
         return false;
