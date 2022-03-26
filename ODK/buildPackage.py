@@ -121,10 +121,10 @@ def CMDHelper():
     print(CMDHelper_MsgFormat("program remove <name>") + "Delete program config.")
     print(CMDHelper_MsgFormat("program change <name> <characteristic> <config>") + "Change program property.")
     print(CMDHelper_MsgFormat("program list") + "Show all program message.")
-    print(CMDHelper_MsgFormat("exit") + "Exit OdysseyWorld SDK Builder.")
+    print(CMDHelper_MsgFormat("exit") + "Exit WTFWorld SDK Builder.")
 
 def CMDPointer():
-    cmd = input("OdysseyWorld SDK Builder>")
+    cmd = input("WTFWorld SDK Builder>")
     if (cmd == ""):
         print("Need help?Just - help or ? - Get help message")
     elif(cmd.split()[0] == "help" or cmd.split()[0] == "?"):
