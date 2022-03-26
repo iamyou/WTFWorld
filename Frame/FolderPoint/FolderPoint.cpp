@@ -20,7 +20,7 @@ DLLEXPORT BOOL FolderPoint(LPCTSTR logicPath,std::string *concretePath){
 }
 DLLEXPORT BOOL FolderPoint_register(char* headerPath,char* folderName,char* logicPathLevel,char* logicPath){
     WindowsRegistry::Op registryRead;
-    if (registryRead.OpenKey("SOFTWARE\\OdysseyWorld\\FolderPoint") == false) {
+    if (registryRead.OpenKey("SOFTWARE\\WTFWorld\\FolderPoint") == false) {
         return false;
     }else{
         return true;
